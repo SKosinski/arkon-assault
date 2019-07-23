@@ -4,31 +4,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-
+    [Header("General")]
     [Tooltip("In ms^-1")] [SerializeField] float xSpeed = 4f;
     [Tooltip("In ms^-1")] [SerializeField] float ySpeed = 4f;
-
     [SerializeField] float xWall = 10f;
     [SerializeField] float yWall = 5f;
 
+    [Header("Screen-position Based")]
     [SerializeField] float positionPitchFactor = -5f;
     [SerializeField] float positionYawFactor = 5.2f;
 
     float xThrow, yThrow, xPos, yPos;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    bool isControlEnabled = true;
 
-    // Update is called once per frame
     void Update()
     {
-        ProcessTranslation();
-        ProcessRotation();
+        if (isControlEnabled)
+        {
+            ProcessTranslation();
+            ProcessRotation();
+        }
     }
 
     private void ProcessRotation()
@@ -69,8 +67,10 @@ public class Player : MonoBehaviour
         yPos = Mathf.Clamp(yrawPos, -yWall, yWall);
 
         transform.localPosition = new Vector3(xPos, yPos, transform.localPosition.z);
-        //Vector3 newPos = new Vector3(horizontalThrow * Time.deltaTime, verticalThrow * Time.deltaTime, 0);
-        //print(newPos);
-        //transform.position += newPos;
+    }
+
+    private void OnPlayerDeath() // called by string reference
+    {
+        isControlEnabled = false;
     }
 }
