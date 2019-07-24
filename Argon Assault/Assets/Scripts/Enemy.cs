@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
+        //Option A 
         GameObject fx = Instantiate(enemyDeathFX, transform.position, Quaternion.identity);
         fx.transform.parent = parent;
         FindObjectOfType<ScoreBoard>().AddScore(value);
