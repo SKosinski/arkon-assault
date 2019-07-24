@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] GameObject enemyDeathFX;
     [SerializeField] Transform parent;
+    [SerializeField] int value = 12;
 
     void Start()
     {
@@ -24,7 +25,7 @@ public class Enemy : MonoBehaviour
     {
         GameObject fx = Instantiate(enemyDeathFX, transform.position, Quaternion.identity);
         fx.transform.parent = parent;
-        FindObjectOfType<ScoreBoard>().AddScore();
+        FindObjectOfType<ScoreBoard>().AddScore(value);
         Destroy();
     }
 
