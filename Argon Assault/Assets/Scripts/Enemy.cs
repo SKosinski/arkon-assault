@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject enemyDeathFX;
     [SerializeField] Transform parent;
     [SerializeField] int value = 12;
+    [SerializeField] int maxHits = 15;
 
     void Start()
     {
@@ -23,14 +24,18 @@ public class Enemy : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
+        maxHits--;
+        if (maxHits<=0)
+        {
+            KillEnemy();
+        }
+    }
+
+    private void KillEnemy()
+    {
         GameObject fx = Instantiate(enemyDeathFX, transform.position, Quaternion.identity);
         fx.transform.parent = parent;
         FindObjectOfType<ScoreBoard>().AddScore(value);
-        Destroy();
-    }
-
-    void Destroy()
-    {
         Destroy(gameObject);
     }
 }

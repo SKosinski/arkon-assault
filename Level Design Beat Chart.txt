@@ -1,0 +1,8 @@
+0 - 1 - Chwila na zapoznanie z kontrolą
+1 - 2 - pierwsze przeszkody
+2 - 3 - pierwsi przeciwnicy, strzelanie
+3 - 4 - sekwencja strzelania i wymijania
+4 - 2 - chwila spokoju
+5 - 5 - duza sekwencja strzelania, szaleństwo, wulkan
+6 - 6 - boss (?) 
+koniec
